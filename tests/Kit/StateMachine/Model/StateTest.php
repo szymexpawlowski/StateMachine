@@ -73,6 +73,18 @@ class StateTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @covers Kit\StateMachine\Model\State::addAction
+     * @expectedException \RuntimeException
+     */
+    public function shouldThrowExceptionWhenAddingActionWithTheSameNameAgain()
+    {
+        $actionStub = $this->getMockForAbstractClass('Kit\StateMachine\Model\Action', ['dummy', []]);
+        $this->state->addAction($actionStub);
+        $this->state->addAction($actionStub);
+    }
+
+    /**
+     * @test
      * @covers Kit\StateMachine\Model\State::triggerAction
      * @covers Kit\StateMachine\Model\State::getActionByName
      *

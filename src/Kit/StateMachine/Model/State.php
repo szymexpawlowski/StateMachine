@@ -39,9 +39,15 @@ class State
 
     /**
      * @param Action $action
+     *
+     * @throws \RuntimeException
      */
     public function addAction(Action $action)
     {
+        if ($this->getActionByName($action->getName())) {
+            throw new \RuntimeException('Action already exists in state');
+        }
+
         $this->actions[] = $action;
     }
 

@@ -5,4 +5,4 @@ test-with-coverage:
 	vendor/bin/phpunit -c phpunit.xml --coverage-html coverage tests
 
 cs:
-	vendor/bin/phpcs --ignore=vendor/* .
+	vendor/bin/phpcs src

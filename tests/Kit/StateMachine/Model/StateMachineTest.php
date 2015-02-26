@@ -73,6 +73,18 @@ class StateMachineTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @covers Kit\StateMachine\Model\StateMachine::addState
+     * @expectedException \RuntimeException
+     */
+    public function shouldThrowExceptionWhenAddingStateWithTheSameNameAgain()
+    {
+        $stateStub = $this->getMock('Kit\StateMachine\Model\State', [], [], '', false);
+        $this->stateMachine->addState($stateStub);
+        $this->stateMachine->addState($stateStub);
+    }
+
+    /**
+     * @test
      * @covers Kit\StateMachine\Model\StateMachine::triggerAction
      * @covers Kit\StateMachine\Model\StateMachine::isEntityRegistered
      *

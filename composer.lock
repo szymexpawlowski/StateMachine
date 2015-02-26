@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c3509c051346ac3e3beaabd00d4ff566",
+    "hash": "b9a4765e7cbfe2d245f263f93e422558",
     "packages": [],
     "packages-dev": [
         {
@@ -112,12 +112,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "e3bc5b564d2eaceae8ecb74ff8194efa6235a04f"
+                "reference": "3028bc808168c31912040d6b31539c51411f8372"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e3bc5b564d2eaceae8ecb74ff8194efa6235a04f",
-                "reference": "e3bc5b564d2eaceae8ecb74ff8194efa6235a04f",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/3028bc808168c31912040d6b31539c51411f8372",
+                "reference": "3028bc808168c31912040d6b31539c51411f8372",
                 "shasum": ""
             },
             "require": {
@@ -149,7 +149,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-02-24 20:43:12"
+            "time": "2015-02-26 15:40:21"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -519,26 +519,29 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.6.4",
+            "version": "2.7.x-dev",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "60ed7751671113cf1ee7d7778e691642c2e9acd8"
+                "reference": "d04b39229628a0cc36ae5616db9c7f6f7119ac8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/60ed7751671113cf1ee7d7778e691642c2e9acd8",
-                "reference": "60ed7751671113cf1ee7d7778e691642c2e9acd8",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/d04b39229628a0cc36ae5616db9c7f6f7119ac8f",
+                "reference": "d04b39229628a0cc36ae5616db9c7f6f7119ac8f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
@@ -562,7 +565,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-25 04:39:26"
+            "time": "2015-02-18 10:38:04"
         }
     ],
     "aliases": [],
@@ -571,7 +574,8 @@
         "instaclick/php-code-sniffer": 20,
         "nikic/php-parser": 20,
         "instaclick/symfony2-coding-standard": 20,
-        "phpunit/phpunit": 20
+        "phpunit/phpunit": 20,
+        "symfony/yaml": 20
     },
     "platform": {
         "php": ">=5.4"

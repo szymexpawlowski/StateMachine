@@ -64,7 +64,7 @@ class StateMachine
     /**
      * @param string $stateName
      *
-     * @return mixed
+     * @return State|null
      */
     private function getStateByName($stateName)
     {
@@ -86,9 +86,15 @@ class StateMachine
 
     /**
      * @param State $state
+     *
+     * @throws \RuntimeException
      */
     public function addState(State $state)
     {
+        if ($this->getStateByName($state->getName())) {
+            throw new \RuntimeException('State already exists in state machine');
+        }
+
         $this->states[] = $state;
     }
 

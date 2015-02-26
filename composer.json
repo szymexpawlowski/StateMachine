@@ -1,0 +1,14 @@
+{
+    "name": "state machine",
+    "description": "state machine",
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "instaclick/php-code-sniffer": "dev-master",
+        "phpunit/phpunit": "3.7.*@dev"
+    },
+    "autoload": {
+        "psr-0": { "Kit\\": "src/" }
+    }
+}

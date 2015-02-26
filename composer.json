@@ -6,6 +6,8 @@
     },
     "require-dev": {
         "instaclick/php-code-sniffer": "dev-master",
+        "nikic/php-parser": "1.1.*@dev",
+        "instaclick/symfony2-coding-standard": "dev-master",
         "phpunit/phpunit": "3.7.*@dev"
     },
     "autoload": {

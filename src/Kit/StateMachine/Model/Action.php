@@ -4,6 +4,7 @@ namespace Kit\StateMachine\Model;
 
 /**
  * Class Action
+ *
  * @package Kit\StateMachine\Entity
  */
 abstract class Action
@@ -29,8 +30,8 @@ abstract class Action
     private $commands;
 
     /**
-     * @param string $name
-     * @param array  $commands
+     * @param string $name     name of the action
+     * @param array  $commands array of commands
      *
      * @codeCoverageIgnore
      * abstract class and no concrete classes will inherit from it in this lib so
@@ -82,9 +83,9 @@ abstract class Action
     }
 
     /**
-     * @param Executable $command
+     * @param ExecutableInterface $command
      */
-    public function addCommand(Executable $command)
+    public function addCommand(ExecutableInterface $command)
     {
         $this->commands[] = $command;
     }
@@ -98,12 +99,12 @@ abstract class Action
     }
 
     /**
-     * @param Stateful $entity
-     * @param array    $constraints
+     * @param StatefulInterface $entity      entity to change
+     * @param array             $constraints constraints
      *
      * @return bool
      */
-    public function execute(Stateful $entity, array $constraints)
+    public function execute(StatefulInterface $entity, array $constraints)
     {
         if (!$this->checkConstraints($constraints)) {
             return false;

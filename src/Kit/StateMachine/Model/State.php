@@ -4,6 +4,7 @@ namespace Kit\StateMachine\Model;
 
 /**
  * Class State
+ *
  * @package Kit\StateMachine\Model
  */
 class State
@@ -19,8 +20,8 @@ class State
     private $actions;
 
     /**
-     * @param string $name
-     * @param array  $actions
+     * @param string $name    name od state
+     * @param array  $actions array of actions
      */
     public function __construct($name, array $actions = [])
     {
@@ -68,15 +69,16 @@ class State
     }
 
     /**
-     * @param Stateful $entity
-     * @param string   $action
-     * @param array    $constraints
+     * @param StatefulInterface $entity      entity to change
+     * @param string            $action      name of action
+     * @param array             $constraints constraints
      *
      * @throws \RuntimeException
      */
-    public function triggerAction(Stateful $entity, $action, array $constraints)
+    public function triggerAction(StatefulInterface $entity, $action, array $constraints)
     {
         $action = $this->getActionByName($action);
+
         if (!$action) {
             throw new \RuntimeException('Action is not registered for this state: ' . $this->getName());
         }

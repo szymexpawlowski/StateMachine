@@ -4,6 +4,7 @@ namespace Kit\StateMachine\Model;
 
 /**
  * Class StateMachine
+ *
  * @package Kit\StateMachine\Entity
  */
 class StateMachine
@@ -19,8 +20,8 @@ class StateMachine
     private $states;
 
     /**
-     * @param string $name
-     * @param array  $states
+     * @param string $name   name od state machine
+     * @param array  $states array of states
      */
     public function __construct($name, array $states = [])
     {
@@ -29,19 +30,20 @@ class StateMachine
     }
 
     /**
-     * @param Stateful $entity
-     * @param          $action
-     * @param array    $constraints
+     * @param StatefulInterface $entity      entity to change
+     * @param string            $action      name of action
+     * @param array             $constraints constraints
      *
      * @throws \RuntimeException
      */
-    public function triggerAction(Stateful $entity, $action, array $constraints)
+    public function triggerAction(StatefulInterface $entity, $action, array $constraints)
     {
         if (!$this->isEntityRegistered($entity)) {
             throw new \RuntimeException('Entity is not registered for this state machine');
         }
 
         $state = $this->getStateByName($entity->getStateName());
+
         if (!$state) {
             throw new \RuntimeException('State is not registered for this state machine');
         }
@@ -50,17 +52,17 @@ class StateMachine
     }
 
     /**
-     * @param Stateful $entity
+     * @param StatefulInterface $entity
      *
      * @return bool
      */
-    private function isEntityRegistered(Stateful $entity)
+    private function isEntityRegistered(StatefulInterface $entity)
     {
         return $this->getName() === $entity->getName();
     }
 
     /**
-     * @param $stateName
+     * @param string $stateName
      *
      * @return mixed
      */

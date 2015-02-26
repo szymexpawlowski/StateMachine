@@ -2,6 +2,11 @@
 
 namespace Kit\StateMachine\Model;
 
+/**
+ * Class StateTest
+ *
+ * @package Kit\StateMachine\Model
+ */
 class StateTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -75,7 +80,7 @@ class StateTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldThrowExceptionWhenNoActionFound()
     {
-        $statefulEntity = $this->getMock('Kit\StateMachine\Model\Stateful');
+        $statefulEntity = $this->getMock('Kit\StateMachine\Model\StatefulInterface');
         $this->state->triggerAction($statefulEntity, 'action', []);
     }
 
@@ -88,7 +93,10 @@ class StateTest extends \PHPUnit_Framework_TestCase
     {
         $actionName = 'action';
         $successfulState = $this->getMock('Kit\StateMachine\Model\State', [], [], '', false);
-        $actionStub = $this->getActionStub($actionName, ['getName' => $actionName, 'execute' => true, 'getSuccessState' => $successfulState]);
+        $actionStub = $this->getActionStub(
+            $actionName,
+            ['getName' => $actionName, 'execute' => true, 'getSuccessState' => $successfulState]
+        );
         $statefulEntityMock = $this->getStatefulEntityMock($successfulState);
         $this->state->addAction($actionStub);
         $this->state->triggerAction($statefulEntityMock, $actionName, []);
@@ -103,7 +111,10 @@ class StateTest extends \PHPUnit_Framework_TestCase
     {
         $actionName = 'action';
         $errorState = $this->getMock('Kit\StateMachine\Model\State', [], [], '', false);
-        $actionStub = $this->getActionStub($actionName, ['getName' => $actionName, 'execute' => false, 'getErrorState' => $errorState]);
+        $actionStub = $this->getActionStub(
+            $actionName,
+            ['getName' => $actionName, 'execute' => false, 'getErrorState' => $errorState]
+        );
         $statefulEntityMock = $this->getStatefulEntityMock($errorState);
 
         $this->state->addAction($actionStub);
@@ -111,13 +122,13 @@ class StateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param $state
+     * @param State $state
      *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    private function getStatefulEntityMock($state)
+    private function getStatefulEntityMock(State $state)
     {
-        $statefulEntityMock = $this->getMock('Kit\StateMachine\Model\Stateful');
+        $statefulEntityMock = $this->getMock('Kit\StateMachine\Model\StatefulInterface');
         $statefulEntityMock->expects($this->once())
             ->method('setState')
             ->with($this->equalTo($state));
@@ -126,14 +137,22 @@ class StateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $actionName
-     * @param array  $methods
+     * @param string $actionName action name
+     * @param array  $methods    array of methods and return values
      *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getActionStub($actionName, array $methods)
     {
-        $actionStub = $this->getMockForAbstractClass('Kit\StateMachine\Model\Action', [$actionName, []], '', false, false, false, array_keys($methods));
+        $actionStub = $this->getMockForAbstractClass(
+            'Kit\StateMachine\Model\Action',
+            [$actionName, []],
+            '',
+            false,
+            false,
+            false,
+            array_keys($methods)
+        );
 
         foreach ($methods as $methodName => $returnValue) {
             $actionStub->expects($this->any())
@@ -144,4 +163,3 @@ class StateTest extends \PHPUnit_Framework_TestCase
         return $actionStub;
     }
 }
- 

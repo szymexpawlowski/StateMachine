@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3f62f98edb22aa870b01ddd5370878c3",
+    "hash": "c3509c051346ac3e3beaabd00d4ff566",
     "packages": [],
     "packages-dev": [
         {
@@ -72,6 +72,84 @@
                 "standards"
             ],
             "time": "2013-01-04 16:10:29"
+        },
+        {
+            "name": "instaclick/symfony2-coding-standard",
+            "version": "dev-master",
+            "target-dir": "Symfony2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/instaclick/Symfony2-coding-standard.git",
+                "reference": "da9e7f875ced2be544407bbfc522ad9cf71641c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/instaclick/Symfony2-coding-standard/zipball/da9e7f875ced2be544407bbfc522ad9cf71641c2",
+                "reference": "da9e7f875ced2be544407bbfc522ad9cf71641c2",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "dev-master"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Instaclick",
+                    "homepage": "http://instaclick.com/",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A code standard to check against the Symfony coding standards.",
+            "time": "2013-01-04 17:00:44"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "e3bc5b564d2eaceae8ecb74ff8194efa6235a04f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e3bc5b564d2eaceae8ecb74ff8194efa6235a04f",
+                "reference": "e3bc5b564d2eaceae8ecb74ff8194efa6235a04f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "lib/bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "time": "2015-02-24 20:43:12"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -491,6 +569,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "instaclick/php-code-sniffer": 20,
+        "nikic/php-parser": 20,
+        "instaclick/symfony2-coding-standard": 20,
         "phpunit/phpunit": 20
     },
     "platform": {

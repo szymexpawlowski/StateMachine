@@ -2,12 +2,17 @@
 
 namespace Kit\StateMachine\Model;
 
+/**
+ * Class StateMachineTest
+ *
+ * @package Kit\StateMachine\Model
+ */
 class StateMachineTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var string
      */
-    private $stateMachineName = 'Kit\StateMachine\Model\Stateful';
+    private $stateMachineName = 'Kit\StateMachine\Model\StatefulInterface';
 
     /**
      * @var StateMachine
@@ -77,7 +82,7 @@ class StateMachineTest extends \PHPUnit_Framework_TestCase
     public function shouldThrowExceptionWhenEntityIsNotRegisteredForStateMachine()
     {
         $stateMachine = new StateMachine('dummy', []);
-        $statefulEntityMock = $this->getMock('Kit\StateMachine\Model\Stateful', [], [], '', false);
+        $statefulEntityMock = $this->getMock('Kit\StateMachine\Model\StatefulInterface', [], [], '', false);
         $stateMachine->triggerAction($statefulEntityMock, 'action', []);
     }
 
@@ -94,7 +99,7 @@ class StateMachineTest extends \PHPUnit_Framework_TestCase
         $stateStub = $this->getMock('Kit\StateMachine\Model\State', [], ['stateName'], '', true);
         $entityName = 'entityName';
         $stateMachine = new StateMachine($entityName, [$stateStub]);
-        $statefulEntityStub = $this->getMock('Kit\StateMachine\Model\Stateful', [], [], '', false);
+        $statefulEntityStub = $this->getMock('Kit\StateMachine\Model\StatefulInterface', [], [], '', false);
         $statefulEntityStub->expects($this->once())
             ->method('getName')
             ->will($this->returnValue($entityName));
@@ -117,7 +122,7 @@ class StateMachineTest extends \PHPUnit_Framework_TestCase
         $constraints = [];
         $stateName = 'stateName';
         $entityName = 'entityName';
-        $statefulEntityStub = $this->getMock('Kit\StateMachine\Model\Stateful', [], [], '', false);
+        $statefulEntityStub = $this->getMock('Kit\StateMachine\Model\StatefulInterface', [], [], '', false);
         $statefulEntityStub->expects($this->once())
             ->method('getName')
             ->will($this->returnValue($entityName));
@@ -138,4 +143,3 @@ class StateMachineTest extends \PHPUnit_Framework_TestCase
         $stateMachine->triggerAction($statefulEntityStub, $action, $constraints);
     }
 }
- 

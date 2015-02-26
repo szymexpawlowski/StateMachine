@@ -2,6 +2,11 @@
 
 namespace Kit\StateMachine\Model;
 
+/**
+ * Class ActionTest
+ *
+ * @package Kit\StateMachine\Model
+ */
 class ActionTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -59,7 +64,7 @@ class ActionTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldAddCommand()
     {
-        $command = $this->getMock('Kit\StateMachine\Model\Executable');
+        $command = $this->getMock('Kit\StateMachine\Model\ExecutableInterface');
         $this->actionStub->addCommand($command);
 
         $this->assertEquals($this->actionStub->getCommands(), [$command]);
@@ -72,7 +77,7 @@ class ActionTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGetAndSetSuccessState()
     {
-        $state = $this->getMock('Kit\StateMachine\Model\State', [], [],'', false);
+        $state = $this->getMock('Kit\StateMachine\Model\State', [], [], '', false);
         $this->actionStub->setSuccessState($state);
 
         $this->assertEquals($this->actionStub->getSuccessState(), $state);
@@ -85,7 +90,7 @@ class ActionTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldGetAndSetErrorState()
     {
-        $state = $this->getMock('Kit\StateMachine\Model\State', [], [],'', false);
+        $state = $this->getMock('Kit\StateMachine\Model\State', [], [], '', false);
         $this->actionStub->setErrorState($state);
 
         $this->assertEquals($this->actionStub->getErrorState(), $state);
@@ -100,7 +105,7 @@ class ActionTest extends \PHPUnit_Framework_TestCase
         $commands = ['dummy'];
         $actionStub = $this->getMockForAbstractClass('Kit\StateMachine\Model\Action', [$this->actionName, $commands]);
         $this->setCheckConstraints($actionStub, false);
-        $statefulEntity = $this->getMock('Kit\StateMachine\Model\Stateful');
+        $statefulEntity = $this->getMock('Kit\StateMachine\Model\StatefulInterface');
 
         $this->assertFalse($actionStub->execute($statefulEntity, []));
     }
@@ -113,9 +118,12 @@ class ActionTest extends \PHPUnit_Framework_TestCase
     {
         $command1 = $this->createCommand(true);
         $command2 = $this->createCommand(false);
-        $actionStub = $this->getMockForAbstractClass('Kit\StateMachine\Model\Action', [$this->actionName, [$command1, $command2]]);
+        $actionStub = $this->getMockForAbstractClass(
+            'Kit\StateMachine\Model\Action',
+            [$this->actionName, [$command1, $command2]]
+        );
         $this->setCheckConstraints($actionStub, true);
-        $statefulEntity = $this->getMock('Kit\StateMachine\Model\Stateful');
+        $statefulEntity = $this->getMock('Kit\StateMachine\Model\StatefulInterface');
 
         $this->assertFalse($actionStub->execute($statefulEntity, []));
     }
@@ -126,9 +134,12 @@ class ActionTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldReturnTrueWhenThereIsNoCommands()
     {
-        $actionStub = $this->getMockForAbstractClass('Kit\StateMachine\Model\Action', [$this->actionName, []]);
+        $actionStub = $this->getMockForAbstractClass(
+            'Kit\StateMachine\Model\Action',
+            [$this->actionName, []]
+        );
         $this->setCheckConstraints($actionStub, true);
-        $statefulEntity = $this->getMock('Kit\StateMachine\Model\Stateful');
+        $statefulEntity = $this->getMock('Kit\StateMachine\Model\StatefulInterface');
 
         $this->assertTrue($actionStub->execute($statefulEntity, []));
     }
@@ -141,9 +152,12 @@ class ActionTest extends \PHPUnit_Framework_TestCase
     {
         $command1 = $this->createCommand(true);
         $command2 = $this->createCommand(true);
-        $actionStub = $this->getMockForAbstractClass('Kit\StateMachine\Model\Action', [$this->actionName, [$command1, $command2]]);
+        $actionStub = $this->getMockForAbstractClass(
+            'Kit\StateMachine\Model\Action',
+            [$this->actionName, [$command1, $command2]]
+        );
         $this->setCheckConstraints($actionStub, true);
-        $statefulEntity = $this->getMock('Kit\StateMachine\Model\Stateful');
+        $statefulEntity = $this->getMock('Kit\StateMachine\Model\StatefulInterface');
 
         $this->assertTrue($actionStub->execute($statefulEntity, []));
     }
@@ -155,7 +169,7 @@ class ActionTest extends \PHPUnit_Framework_TestCase
      */
     private function createCommand($executeReturnValue)
     {
-        $command = $this->getMock('Kit\StateMachine\Model\Executable');
+        $command = $this->getMock('Kit\StateMachine\Model\ExecutableInterface');
         $command->expects($this->any())
             ->method('execute')
             ->will($this->returnValue($executeReturnValue));
@@ -164,8 +178,8 @@ class ActionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param mixed $action
-     * @param bool  $checkConstraintsReturnValue
+     * @param mixed $action                      action
+     * @param bool  $checkConstraintsReturnValue constraints return value
      */
     private function setCheckConstraints($action, $checkConstraintsReturnValue)
     {
@@ -174,4 +188,3 @@ class ActionTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($checkConstraintsReturnValue));
     }
 }
- 

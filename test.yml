@@ -1,0 +1,27 @@
+Entity1:
+    state1Name:
+        action1Name:
+            actionClass: 'Kit\StateMachine\TestEntities\A1'
+            successState: state2Name
+            errorState: state3Name
+            commands:
+                - Kit\StateMachine\TestEntities\C1
+                - Kit\StateMachine\TestEntities\C2
+        action2Name:
+            actionClass: 'Kit\StateMachine\TestEntities\A1'
+            successState: state4Name
+            errorState: state5Name
+            commands:
+                - Kit\StateMachine\TestEntities\C1
+                - Kit\StateMachine\TestEntities\C2
+    state2Name:
+        action3Name:
+            actionClass: 'Kit\StateMachine\TestEntities\A1'
+            successState: state4Name
+            errorState: state5Name
+            commands:
+                - Kit\StateMachine\TestEntities\C1
+                - Kit\StateMachine\TestEntities\C2
+    state3Name: []
+    state4Name: []
+    state5Name: []
